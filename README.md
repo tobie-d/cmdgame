@@ -3,7 +3,7 @@ simple text based RPG made in java
 
 my second java project (a bit more complex than the first)
 
-**Current Version:** `v0.2.0-alpha` | **Status:** in active development (maybe)
+**Current Version:** `v0.2.1-alpha` | **Status:** in active development (maybe)
 
 # How to play
 make sure you have java 25 or higher installed on your  computer 
