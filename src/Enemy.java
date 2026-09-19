@@ -4,13 +4,16 @@ public class Enemy {
     int health;
     int attackDMG;
     int xpReward;
+    int minGold;
+    int maxGold;
 
-
-    public Enemy(String name, int health, int attackDMG, int xpReward) {
+    public Enemy(String name, int health, int attackDMG, int xpReward, int minGold,int maxGold) {
         this.name = name;
         this.health = health;
         this.attackDMG = attackDMG;
         this.xpReward = xpReward;
+        this.minGold = minGold;
+        this.maxGold = maxGold;
     }
 
 

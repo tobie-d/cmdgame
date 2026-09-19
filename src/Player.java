@@ -9,6 +9,7 @@ public class Player {
     int xp = 0;
     int level = 1;
     int xpToNextLevel = 100;
+    int gold = 0;
     ArrayList<Item> inventory = new ArrayList<>();
 
     public Player(String name, int health, int attackDMG) {
@@ -31,6 +32,11 @@ public class Player {
             UI.print("New damage: " + attackDMG);
         }
     }
+
+    public void gainGold(int amount){
+        gold += amount;
+    }
+
 
     public void attack(Enemy e) {
         e.health = Math.max(0, e.health - attackDMG);

@@ -35,15 +35,15 @@ public class Main {
         int mchoice = 0;
         while (mchoice != 1){
             mchoice = showMenu(scan);
-            if (mchoice == 2) System.out.println("TBA");
+            if (mchoice == 2) print("TBA");
             if (mchoice == 3) System.exit(0);
         }
         scan.nextLine();
         String name = getName(scan);
         Player player = new Player(name, 100, 15);
-        Enemy enemy = new Enemy("Goblin", 50, 8,250);
-        Enemy enemy2 = new Enemy("Goblin", 50, 8,250);
-        Enemy enemy3 = new Enemy("Dragon", 200, 10,500);
+        Enemy enemy = new Enemy("goblin",50,8,250,10,20);
+        Enemy enemy2 = new Enemy("Goblin", 50, 8,250,10,20);
+        Enemy enemy3 = new Enemy("Dragon", 200, 10,500,50,150);
         player.inventory.add(new HealthPot("Health Potion", 30));
 
         Enemy[] enemies = {enemy,enemy2,enemy3};

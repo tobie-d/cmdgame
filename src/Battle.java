@@ -9,7 +9,7 @@ public class Battle {
                 UI.print("1. Attack");
                 UI.print("2. Inventory");
                 UI.print("3. Run");
-                int choice = 0;
+                int choice;
                 try{
                     choice = scan.nextInt();
                     scan.nextLine();
@@ -27,8 +27,12 @@ public class Battle {
                     UI.print(player.name + " Attacked " + enemy.name);
                     UI.print(enemy.name + " HP: " + enemy.health);
                     if (!enemy.isAlive()) {
+
+                        int goldEarned = (int)(Math.random()* (enemy.maxGold - enemy.minGold + 1))+ enemy.minGold;
+                        player.gainGold(goldEarned);
                         player.gainXP(enemy.xpReward);
                         UI.print(enemy.name + " died! You win!");
+                        UI.print("You gained " + goldEarned + " Gold");
                         break;
                     }
 
