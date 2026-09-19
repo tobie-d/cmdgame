@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
 
-
     static int showMenu(Scanner scan){
         print("=== CMDGAME ===");
         print("1. Play");
@@ -41,18 +40,16 @@ public class Main {
         scan.nextLine();
         String name = getName(scan);
         Player player = new Player(name, 100, 15);
-        Enemy enemy = new Enemy("goblin",50,8,250,10,20);
-        Enemy enemy2 = new Enemy("Goblin", 50, 8,250,10,20);
-        Enemy enemy3 = new Enemy("Dragon", 200, 10,500,50,150);
+        Dungeon dungeon = new Dungeon();
+        dungeon.generate();
         player.inventory.add(new HealthPot("Health Potion", 30));
 
-        Enemy[] enemies = {enemy,enemy2,enemy3};
-        for(Enemy e  : enemies){
-            UI.print("A "+ e.name + " appears!");
-            UI.print("Press enter to fight");
+        for(int i=0; i < dungeon.rooms.length; i++ ){
+            UI.print("You approach a room.");
+            UI.print("Press enter to enter");
             scan.nextLine();
             UI.clearScreen();
-            Battle.start(player, e, scan);
+            dungeon.enter(i, player, scan);
             if (!player.isAlive()) break;
         }
 
