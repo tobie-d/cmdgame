@@ -4,23 +4,29 @@ public class Main {
 
 
     static int showMenu(Scanner scan){
-        System.out.println(center("=== CMDGAME ===", 80));
-        System.out.println(center("1. Play", 80));
-        System.out.println(center("2. How to play", 80));
-        System.out.println(center("3. Quit", 80));
+        print("=== CMDGAME ===");
+        print("1. Play");
+        print("2. How to play");
+        print("3. Quit");
         try {
             return scan.nextInt();
         }catch (Exception e){
-            System.out.println(center("Invalid choice.", 80));
+            print("Invalid choice.");
             scan.nextLine();
             return 0;
         }
     }
 
+    static String getName(Scanner scan){
+        UI.clearScreen();
+        print("Enter Name: ");
+        return scan.nextLine();
+    }
 
-    static String center(String text, int width){
-        int padding = (width - text.length()) / 2;
-        return " ".repeat(padding) + text;
+
+
+    static void print(String text){
+        UI.print(text);
     }
 
 
@@ -32,11 +38,23 @@ public class Main {
             if (mchoice == 2) System.out.println("TBA");
             if (mchoice == 3) System.exit(0);
         }
-        Player player = new Player("Test", 100, 15);
-        Enemy enemy = new Enemy("Goblin", 50, 8);
+        scan.nextLine();
+        String name = getName(scan);
+        Player player = new Player(name, 100, 15);
+        Enemy enemy = new Enemy("Goblin", 50, 8,250);
+        Enemy enemy2 = new Enemy("Goblin", 50, 8,250);
+        Enemy enemy3 = new Enemy("Dragon", 200, 10,500);
         player.inventory.add(new HealthPot("Health Potion", 30));
 
-        Battle.start(player,enemy,scan);
+        Enemy[] enemies = {enemy,enemy2,enemy3};
+        for(Enemy e  : enemies){
+            UI.print("A "+ e.name + " appears!");
+            UI.print("Press enter to fight");
+            scan.nextLine();
+            UI.clearScreen();
+            Battle.start(player, e, scan);
+            if (!player.isAlive()) break;
+        }
 
     }
 }

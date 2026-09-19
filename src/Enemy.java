@@ -3,12 +3,14 @@ public class Enemy {
     String name;
     int health;
     int attackDMG;
+    int xpReward;
 
 
-    public Enemy(String name, int health, int attackDMG) {
+    public Enemy(String name, int health, int attackDMG, int xpReward) {
         this.name = name;
         this.health = health;
         this.attackDMG = attackDMG;
+        this.xpReward = xpReward;
     }
 
 
@@ -17,9 +19,6 @@ public class Enemy {
     }
 
     boolean isAlive() {
-        if (health <= 0) {
-            return false;
-        }
-        return true;
+        return health > 0;
     }
 }
