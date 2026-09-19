@@ -22,7 +22,7 @@ public class Room {
             case TRAP -> {
                 int min = 1;
                 int max = 20;
-                int range = max - min;
+                int range = max - min + 1;
                 int damage = (int) (Math.random() * range) + min;
                 p.health -= damage;
                 UI.print("You got caught by a trap, you took " + damage + " HP of damage.");
