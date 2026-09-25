@@ -8,7 +8,8 @@ public class HealthPot extends Item {
     }
 
     public void use(Player p){
-        p.health = p.health + healAmount;
+       // cap at maxHealth so potions never over-heal
+        p.health = Math.min(p.health + healAmount, p.maxHealth);
     }
 
 }

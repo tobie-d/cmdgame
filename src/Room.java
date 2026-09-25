@@ -12,6 +12,10 @@ public class Room {
         this.type = type;
     }
 
+    // TODO: implement BOSS room behaviour
+    /**
+     * Executes the effect of this room (empty, chest, trap, enemy or boss).
+     */
     public void trigger(Player p, Scanner scan){
         switch(type){
             case EMPTY -> UI.print("The room is empty, keep going.");
@@ -20,11 +24,9 @@ public class Room {
                 UI.print("You found a potion!");
             }
             case TRAP -> {
-                int min = 1;
-                int max = 20;
-                int range = max - min + 1;
-                int damage = (int) (Math.random() * range) + min;
-                p.health -= damage;
+                // simple random damage between 1 and 20
+                int damage = (int) (Math.random() * 20) + 1;
+                p.health = Math.max(0, p.health - damage);
                 UI.print("You got caught by a trap, you took " + damage + " HP of damage.");
             }
             case ENEMY -> {

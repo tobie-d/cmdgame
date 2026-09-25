@@ -1,5 +1,11 @@
 public class EnemyFactory {
 
+    /**
+     * Returns a random enemy from a fixed pool of predefined enemies.
+     * Note: a new array is currently created on every call
+     */
+
+
     static Enemy getRandom(){
         Enemy[] enemies = {
             new Enemy("Goblin",40,6,30,3,10),

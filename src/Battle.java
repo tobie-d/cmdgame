@@ -1,6 +1,16 @@
 import java.util.Scanner;
 
 public class Battle {
+    /**
+     * Starts a turn-based battle between the player and an enemy.
+     * The player can attack, use an item from inventory or run away.
+     * The battle continues until one side dies or the player successfully runs away.
+     *
+     * @param player the player character
+     * @param enemy the enemy being fought
+     * @param scan scanner for player input
+     */
+
     static void start(Player player, Enemy enemy, Scanner scan){
     UI.print(player.name + " HP: " + player.health);
         UI.print(enemy.name + " HP: " + enemy.health);
@@ -12,7 +22,7 @@ public class Battle {
                 int choice;
                 try{
                     choice = scan.nextInt();
-                    scan.nextLine();
+                    scan.nextLine(); // consume newline
                 }catch(Exception e){
                     UI.print("Invalid input.");
                     scan.nextLine();
@@ -27,7 +37,7 @@ public class Battle {
                     UI.print(player.name + " Attacked " + enemy.name);
                     UI.print(enemy.name + " HP: " + enemy.health);
                     if (!enemy.isAlive()) {
-
+                        // random gold in the enemy's declared range
                         int goldEarned = (int)(Math.random()* (enemy.maxGold - enemy.minGold + 1))+ enemy.minGold;
                         player.gainGold(goldEarned);
                         player.gainXP(enemy.xpReward);
@@ -36,6 +46,7 @@ public class Battle {
                         break;
                     }
 
+                    // enemy always gets a turn after a successful attack
                     enemy.attack(player);
                     UI.print(enemy.name + " Attacked " + player.name);
                     UI.print(player.name + " HP: " + player.health);
@@ -64,11 +75,15 @@ public class Battle {
                             }
                             UI.print(player.name + " HP: " + player.health);
                             UI.print("\n");
-                            player.inventory.remove(ic);
+                            player.inventory.remove(ic); // consume the item
                         } catch (Exception e) {
                             UI.print("Invalid choice.");
                             scan.nextLine();
                         }
+                        // using an item still costs a turn so the enemy attacks afterwards
+                        enemy.attack(player);
+                        UI.print(enemy.name + " Attacked " + player.name);
+                        UI.print(player.name + " HP: " + player.health);
                     }
                 } else if(choice == 3) {
                     UI.print("You ran away!");

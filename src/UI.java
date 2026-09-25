@@ -4,6 +4,9 @@ public class UI {
         System.out.println(center(text,80));
     }
 
+
+    // not a great way to do this, but it works for a console game
+    // probably will cause some bug so change this soon
     public static void clearScreen(){
         System.out.println("\n".repeat(50));
     }

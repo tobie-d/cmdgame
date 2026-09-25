@@ -18,7 +18,7 @@ public class Enemy {
 
 
     public void attack(Player e) {
-        e.health = Math.max(0, e.health - attackDMG);
+        e.health = Math.max(0, e.health - attackDMG); // same safety clamp as Player.attack
     }
 
     boolean isAlive() {
