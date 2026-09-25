@@ -6,14 +6,14 @@ public class Dungeon {
     Room.RoomType[] randomRoom = Room.RoomType.values();
 
     public void generate(){
-        for (int i = 0; i < rooms.length; i++){
+        for (int i = 0; i < rooms.length - 1; i++){
 
-            int randomIndex=(int)(Math.random() * randomRoom.length);
+            int randomIndex=(int)(Math.random() * randomRoom.length - 1);
             Room.RoomType roomType = randomRoom[randomIndex];
             rooms[i] = new Room(roomType);
 
         }
-        // TODO: force only the last room to be a BOSS. currently any room can be one
+        rooms[9] = new Room(Room.RoomType.BOSS);
     }
 
     public void enter(int index, Player player, Scanner scan){

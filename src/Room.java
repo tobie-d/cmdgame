@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Room {
 
     public enum RoomType {
-        EMPTY, CHEST, TRAP, ENEMY, BOSS
+        ENEMY, CHEST, TRAP, EMPTY, BOSS
     }
 
     RoomType type;
@@ -33,7 +33,7 @@ public class Room {
                 Enemy e = EnemyFactory.getRandom();
                 Battle.start(p,e,scan);
             }
-            case BOSS -> UI.print("Boss TBA");
+            case BOSS -> BossBattle.start(p,scan);
         }
     }
 
