@@ -5,7 +5,7 @@ going to slowly start changing it into a dungeon crawler from any versions past 
 
 my second java project (a bit more complex than the first)
 
-**Current Version:** `v0.2.1-alpha` | **Status:** in active development (maybe)
+**Current Version:** `v0.3.0-alpha` | **Status:** in active development (maybe)
 
 # How to play
 make sure you have java 25 or higher installed on your  computer 
