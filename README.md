@@ -1,6 +1,8 @@
 # Cmdgame
 simple text based RPG made in java
 
+going to slowly start changing it into a dungeon crawler from any versions past v.0.2.1-alpha
+
 my second java project (a bit more complex than the first)
 
 **Current Version:** `v0.2.1-alpha` | **Status:** in active development (maybe)
