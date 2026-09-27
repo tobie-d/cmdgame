@@ -41,8 +41,9 @@ public class BossBattle {
                     UI.print("Would you like to enter the shop? Y/N ");
                     String shopinp = scan.nextLine();
                     if(shopinp.equalsIgnoreCase("Y")){
-                        // add shop enter here
-                        UI.print("you enter shop");
+                        UI.print("You enter the shop.");
+                        Shop shop = new Shop();
+                        shop.enter(player, scan);
                         break;
                     } else{
                         UI.print("You descend to the next floor.");

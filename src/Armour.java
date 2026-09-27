@@ -8,6 +8,7 @@ public class Armour extends Item {
 
     public void use(Player p){
             p.maxHealth += tier * 20;
+            UI.print("You equipped the armor. New max health is "+ p.maxHealth);
         }
     }
 
