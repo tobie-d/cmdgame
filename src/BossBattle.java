@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// it is just a copy of Battle.java with some changes to how the enemy system works
 
 public class BossBattle {
 
@@ -12,7 +13,7 @@ public class BossBattle {
             UI.print(player.name + "'s turn! Pick an option");
             UI.print("1. Attack");
             UI.print("2. Inventory");
-            UI.print("3. Run");
+            UI.print("3. Run"); // need to disable or add a cost or chance
             int choice;
             try{
                 choice = scan.nextInt();
@@ -35,9 +36,19 @@ public class BossBattle {
                     int goldEarned = (int)(Math.random()* (boss.maxGold - boss.minGold + 1))+ boss.minGold;
                     player.gainGold(goldEarned);
                     player.gainXP(boss.xpReward);
-                    UI.print(boss.name + " died! You win!");
+                    UI.print(boss.name + " died! You beat the boss!");
                     UI.print("You gained " + goldEarned + " Gold");
-                    break;
+                    UI.print("Would you like to enter the shop? Y/N ");
+                    String shopinp = scan.nextLine();
+                    if(shopinp.equalsIgnoreCase("Y")){
+                        // add shop enter here
+                        UI.print("you enter shop");
+                        break;
+                    } else{
+                        UI.print("You descend to the next floor.");
+                        player.currentFloor++;
+                        break;
+                    }
                 }
 
                 // boss qte
@@ -62,6 +73,13 @@ public class BossBattle {
 
                 if (!player.isAlive()) {
                     UI.print("You died!");
+                    UI.print("Stats:");
+                    UI.print("Floor: " + player.currentFloor);
+                    UI.print("Level: " + player.level);
+                    UI.print("XP: " + player.xp + "/" + player.xpToNextLevel);
+                    UI.print("Gold: " + player.gold);
+                    UI.print("Attack Damage: " + player.attackDMG);
+                    UI.print("Max Health: " + player.maxHealth);
                     break;
                 }
 
@@ -79,11 +97,6 @@ public class BossBattle {
                         scan.nextLine();
                         Item item = player.inventory.get(ic);
                         item.use(player);
-                        UI.print("Used " + item.name);
-                        if (item instanceof HealthPot) {
-                            UI.print("Healed " + ((HealthPot) item).healAmount + " HP");
-                        }
-                        UI.print(player.name + " HP: " + player.health);
                         UI.print("\n");
                         player.inventory.remove(ic); // consume the item
                     } catch (Exception e) {

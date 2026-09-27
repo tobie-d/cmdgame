@@ -8,7 +8,7 @@ public class Dungeon {
     public void generate(){
         for (int i = 0; i < rooms.length - 1; i++){
 
-            int randomIndex=(int)(Math.random() * randomRoom.length - 1);
+            int randomIndex=(int)(Math.random() * (randomRoom.length - 1));
             Room.RoomType roomType = randomRoom[randomIndex];
             rooms[i] = new Room(roomType);
 

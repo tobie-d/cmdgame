@@ -1,18 +1,21 @@
 import java.util.Scanner;
+import java.util.Random;
+
+
 
 public class Room {
 
     public enum RoomType {
-        ENEMY, CHEST, TRAP, EMPTY, BOSS
+        ENEMY, CHEST, TRAP, EMPTY, BOSS // keep BOSS last until i figure out how weighted rooms will work
     }
 
     RoomType type;
+    Random random = new Random();
 
     public Room(RoomType type) {
         this.type = type;
     }
 
-    // TODO: implement BOSS room behaviour
     /**
      * Executes the effect of this room (empty, chest, trap, enemy or boss).
      */
@@ -20,7 +23,7 @@ public class Room {
         switch(type){
             case EMPTY -> UI.print("The room is empty, keep going.");
             case CHEST -> {
-                p.inventory.add(new HealthPot("Health Potion", 30));
+                p.inventory.add(new HealthPot(random.nextInt(1,4)));
                 UI.print("You found a potion!");
             }
             case TRAP -> {

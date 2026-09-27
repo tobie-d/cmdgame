@@ -10,6 +10,7 @@ public class Player {
     int level = 1;
     int xpToNextLevel = 100;
     int gold = 0;
+    int currentFloor = 1;
     ArrayList<Item> inventory = new ArrayList<>();
 
     public Player(String name, int health, int attackDMG) {

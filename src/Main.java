@@ -35,19 +35,21 @@ public class Main {
         String name = getName(scan);
         Player player = new Player(name, 100, 15);
         Dungeon dungeon = new Dungeon();
-        dungeon.generate();
+        player.inventory.add(new HealthPot(1)); // starting item so the player has something useful immediately (and to test item features)
+        player.inventory.add(new HealthPot(2));
+        player.inventory.add(new HealthPot(3));
+        while(player.isAlive()) {
+            dungeon.generate();
 
-        // starting item so the player has something useful immediately (and to test item features)
-        player.inventory.add(new HealthPot("Health Potion", 30));
-
-        // walk through every room sequentially
-        for(int i=0; i < dungeon.rooms.length; i++ ){
-            UI.print("You approach a room.");
-            UI.print("Press enter to enter");
-            scan.nextLine();
-            UI.clearScreen();
-            dungeon.enter(i, player, scan);
-            if (!player.isAlive()) break; // stop the run on death
+            // walk through every room sequentially
+            for (int i = 0; i < dungeon.rooms.length; i++) {
+                UI.print("You approach a room.");
+                UI.print("Press enter to enter");
+                scan.nextLine();
+                UI.clearScreen();
+                dungeon.enter(i, player, scan);
+                if (!player.isAlive()) break; // stop the run on death
+            }
         }
 
     }

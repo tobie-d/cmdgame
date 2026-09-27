@@ -18,7 +18,7 @@ public class Battle {
                 UI.print(player.name + "'s turn! Pick an option");
                 UI.print("1. Attack");
                 UI.print("2. Inventory");
-                UI.print("3. Run");
+                UI.print("3. Run"); // need to add a cost or chance
                 int choice;
                 try{
                     choice = scan.nextInt();
@@ -52,6 +52,13 @@ public class Battle {
                     UI.print(player.name + " HP: " + player.health);
                     if (!player.isAlive()) {
                         UI.print("You died!");
+                        UI.print("Stats:");
+                        UI.print("Floor: " + player.currentFloor);
+                        UI.print("Level: " + player.level);
+                        UI.print("XP: " + player.xp + "/" + player.xpToNextLevel);
+                        UI.print("Gold: " + player.gold);
+                        UI.print("Attack Damage: " + player.attackDMG);
+                        UI.print("Max Health: " + player.maxHealth);
                         break;
                     }
 
@@ -69,11 +76,6 @@ public class Battle {
                             scan.nextLine();
                             Item item = player.inventory.get(ic);
                             item.use(player);
-                            UI.print("Used " + item.name);
-                            if (item instanceof HealthPot) {
-                                UI.print("Healed " + ((HealthPot) item).healAmount + " HP");
-                            }
-                            UI.print(player.name + " HP: " + player.health);
                             UI.print("\n");
                             player.inventory.remove(ic); // consume the item
                         } catch (Exception e) {

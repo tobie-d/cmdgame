@@ -1,13 +1,9 @@
-public class Item {
-
+public abstract class Item {
     String name;
 
     public Item(String name){
         this.name = name;
     }
-
-
-    // TODO: make Item abstract or move all effects into subclasses
     /**
      * Uses this item on the given player.
      * Subclasses should override this method to provide real behavior,
@@ -16,11 +12,5 @@ public class Item {
      * @param p the player who is using the item
      */
 
-
-    public void use(Player p) {
-        // empty on purpose
-    }
-
-
-
+    public abstract void use(Player p);
 }
